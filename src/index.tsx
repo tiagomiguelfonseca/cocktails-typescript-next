@@ -2,15 +2,38 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { store } from './app/store';
-import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+/* Make the store available to all container 
+components in the application without passing it explicitly */
+import { Provider } from 'react-redux';
+// Store type from Redux
+import { Store } from 'redux';
+import configureStore, { IAppState } from './store';
+import { getAllSports, getSportDetail} from './store/actions/SportActions';
+import { getAllClubs, getTeamDetail } from './store/actions/TeamActions';
+
+interface IProps {
+  store: Store<IAppState>;
+}
+
+const Root = (props:IProps) => {
+  return (
+    <Provider store={props.store}>
+      <App />
+    </Provider>
+  );
+};
+
+// Generate the store
+const store = configureStore();
+store.dispatch(getAllClubs());
+store.dispatch(getAllSports());
+store.dispatch(getTeamDetail());
+store.dispatch(getSportDetail("4335"));
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <Root store={store}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
