@@ -9,6 +9,8 @@ Main Functionalities:
 - Search Bar works with two diferent API Calls with concat
 - I could deal with some Typescript Props, special with some functions, url param, I opt to "any" props
 - I've learn the main functionality of typescript and redux and some initial steps of nextjs
+- OldAproach folders means my first aproach with classic manual reducer-action-mapstateprops from store
+- Next has built in fetch, I will try
 
 
 
